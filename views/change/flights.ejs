@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+	<head>
+		<meta charset = "utf-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<title><%= database %> DB</title>
+ 		<link rel="shortcut icon" href="public/assets/film.ico" type="image/x-icon">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<% if (errors) { %>
+			<% for (let i = 0; i < errors.length; i++) { %>
+				<div class="container">
+					<div class="alert alert-danger"><%= errors[i].msg %></div>
+				</div>
+			<% } %>
+		<% } %>
+		<div class="container">
+	    <form method="post" action="/<%= table %>/save" align="center">
+	      <div class="form-group">
+	        <label for="exampleFormControlInput1"><%= upCaseColumns[1] %>:</label>
+	        <input type="text" name="<%= columns[1] %>" <% if (rows && rows[0].toPlace) { %> value="<%= rows[0].toPlace.trim() %>" <% } %> class="form-control" id="exampleFormControlInput1" required>
+	      </div>
+	      <div class="form-group">
+	        <label for="exampleFormControlInput1"><%= upCaseColumns[2] %>:</label>
+	        <input type="text" name="<%= columns[2] %>" <% if (rows && rows[0].fromPlace) { %> value="<%= rows[0].fromPlace.trim() %>" <% } %> class="form-control" id="exampleFormControlInput1" required>
+	      </div>
+	      <div class="form-group">
+	        <label for="exampleFormControlInput1"><%= upCaseColumns[3] %>:</label>
+	        <input type="text" name="<%= columns[3] %>" <% if (rows && rows[0].departure_date) { %> value="<%= rows[0].departure_date.trim() %>" <% } %> class="form-control" id="exampleFormControlInput1" required>
+	      </div>
+		<div class="form-group">
+			<label for="exampleFormControlSelect1"><%= upCaseColumns[4] %>:</label>
+			<select name="<%= columns[4] %>" class="form-control" id="exampleFormControlSelect1">
+				<% for (let i = 0; i < ratingOptions.length; i++) { %>
+					<% if (rows && ratingOptions[i] == rows[0].rating) { %>
+						<option selected value="<%= ratingOptions[i] %>"><%= ratingOptions[i] %></option>
+					<% } else { %>
+						<option value="<%= ratingOptions[i] %>"><%= ratingOptions[i] %></option>
+					<% } %>
+				<% } %>
+			</select>
+		</div>
+	      <button type="submit" name="<%= operation %>" class="btn btn-success" align="center"><%= operation %></button>
+	    </form>
+		</div>
+	</body>

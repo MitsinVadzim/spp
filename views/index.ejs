@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+	<head>
+		<meta charset = "utf-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<title><%= database %> DB</title>
+ 		<link rel="shortcut icon" href="public/assets/film.ico" type="image/x-icon">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+				integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<div class="row">
+			<div class="col">
+				<form method="post" action="/flights" align="center">
+					<button type="submit" name="Flights" class="btn btn-info">Flights</button>
+				</form>
+			</div>
+			<div class="col">
+				<form method="post" action="/users" align="center">
+					<button type="submit" name="users" class="btn btn-info">Users</button>
+				</form>
+			</div>
+			<div class="col">
+				<form method="post" action="/tickets" align="center">
+					<button type="submit" name="tickets" class="btn btn-info">Tickets</button>
+				</form>
+			</div>
+		</div>
+	</body>
