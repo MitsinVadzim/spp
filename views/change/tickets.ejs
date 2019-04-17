@@ -18,7 +18,7 @@
 				</div>
 			<% } %>
 		<% } %>
-		<div class="container">
+		<div class="container-fluid">
 	    <form method="post" action="/<%= table %>/save" align="center">
 	      <div class="form-group">
 	        <label for="exampleFormControlInput1"><%= upCaseColumns[1] %>:</label>
@@ -32,7 +32,7 @@
 	        <label for="exampleFormControlInput1"><%= upCaseColumns[3] %>:</label>
 	        <input type="text" name="<%= columns[3] %>" <% if (rows && rows[0].id_flight) { %> value="<%= rows[0].id_flight %>" <% } %> class="form-control" id="exampleFormControlInput1" required>
 	      </div>
-	      <button type="submit" name="<%= operation %>" class="btn btn-success" align="center"><%= operation %></button>
+	      <button type="submit" name="<%= operation %>" class="btn btn-outline-success" align="center"><%= operation %></button>
 	    </form>
 		</div>
 	</body>

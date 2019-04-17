@@ -62,6 +62,23 @@ router.post('/update/:id', urlencodedParser, function(req, res) {
 
 });
 
+router.get('/:id', urlencodedParser, function(req, res) {
+  operation = opUpdate;
+  id = req.params.id;
+  const sql = `SELECT * FROM ${table} WHERE id = ${id};`;
+  const query = db.query(sql, (err, rows) => {
+      if (err) {
+            res.status(INTERNAL_SERVER_ERROR).send(internalErrorMessage);
+        }
+        else {
+            res.status(OK).render(tableRoute, {database: upCaseDataBase,
+                table: table, columns: columns, upCaseColumns: upCaseColumns,
+                rows: rows});
+        }
+  });
+
+});
+
 function validateRequest(req) {
 
   req.check('toPlace')
@@ -129,5 +146,7 @@ router.use('/', urlencodedParser, function(req, res) {
         }
     });
 });
+
+
 
 module.exports = router;

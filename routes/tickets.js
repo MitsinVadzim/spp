@@ -119,9 +119,21 @@ router.use('/', urlencodedParser, function(req, res) {
             res.status(INTERNAL_SERVER_ERROR).send(internalErrorMessage);
         }
         else {
-            res.status(OK).render(tableRoute, {database: upCaseDataBase,
+          let query = `SELECT toPlace FROM flights left join tickets on tickets.id_flight = flights.id;`;
+          var array = [];
+          console.log(rows);
+          db.query(query,(err1, result) => {
+            if (err) {
+                return res.status(500).send(err);
+            }else{
+              for (var i = 0; i < rows.length; i++) {
+                rows[i].id_flight = result[i].toPlace;
+              }
+              res.status(OK).render(tableRoute, {database: upCaseDataBase,
                 table: table, columns: columns, upCaseColumns: upCaseColumns,
                 rows: rows});
+            }
+          });
         }
     });
 });
